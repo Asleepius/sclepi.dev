@@ -23,3 +23,20 @@ features:
     details: https://GitHub.com/Asleepius/Sclepi.dev
 ---
 
+
+<script setup>
+import Citations from './components/CitationPicker.vue'
+import {reactive} from 'vue'
+const citations = reactive([{
+  type: "YouTube",
+  url: "_M4o0ExLQCs", 
+  title: "Get Kata", 
+  author: "Kevlin Henney"
+}, {
+  type:"Medium",
+  url:"https://kevlinhenney.medium.com/need-something-sorted-sleep-on-it-11fdf8453914",   title:"Need Something Sorted? Sleep on it!",
+  author: "Kevlin Henney"
+}])
+</script>
+
+<Citations :citations="citations" />
