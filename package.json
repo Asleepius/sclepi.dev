@@ -10,8 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/markdoc": "^0.12.4",
+    "@astrojs/react": "^4.1.2",
     "@astrojs/starlight": "^0.30.3",
+    "@astrojs/starlight-markdoc": "^0.2.0",
+    "@excalidraw/excalidraw": "^0.17.6",
     "astro": "^5.0.2",
+    "react": "^18.3.1",
+    "react-compiler-runtime": "^19.0.0-beta-55955c9-20241229",
+    "react-dom": "^18.3.1",
     "sharp": "^0.32.5"
   }
 }
