@@ -27,7 +27,7 @@ function Flow() {
   );
 
   return (
-    <div style={{ width: '80%', height: '70vh', margin: 'auto' }}>
+    <div className="not-content" style={{ width: '80%', height: '100vh' }}>
         <ReactFlow
             nodes={nodes}
             onNodesChange={onNodesChange}
