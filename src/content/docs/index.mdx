@@ -20,10 +20,31 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 import Flow from '../components/Flow.astro'
 import mock from '../components/Flow.mock.excalidraw.json'
 
-<Flow initialNodes={[
-    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-]} initialEdges={[{ id: 'e1-2', source: '1', target: '2' }]} />
+<Flow {...Object.fromEntries(Object.entries(mock.elements.reduce(
+	(registry, {type, id, ...next}) => {
+		if (type == "text") {
+			registry.nodes[next.containerId].data.label = next.text;
+			return registry;
+		}
+
+		var value = type == "rectangle" ? {
+			id, data: { label: "" }, position: { x: Math.round(next.x), y: Math.round(next.y) }
+		} : {
+			id, source: next.startBinding.elementId, target: next.endBinding.elementId
+		}
+
+		return {
+			...registry,
+			[type =="rectangle" ? "nodes" : "edges"]: {
+				...registry[type =="rectangle" ? "nodes" : "edges"],
+				[id]: value
+			}
+		}
+	}, {
+		nodes: {},
+		edges: {}
+	}
+)).map(([key, value]) => [key, Object.values(value)]))} />
 
 ## Next steps
 

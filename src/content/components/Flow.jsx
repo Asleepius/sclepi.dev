@@ -10,9 +10,9 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-function Flow({ initialNodes, initialEdges }) {
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+function Flow({ nodes, edges }) {
+  const [n, , onNodesChange] = useNodesState(nodes);
+  const [e, setEdges, onEdgesChange] = useEdgesState(edges);
   const onConnect = useCallback(
     (connection) => setEdges((edges) => addEdge(connection, edges)),
     [setEdges]
@@ -21,9 +21,9 @@ function Flow({ initialNodes, initialEdges }) {
   return (
     <div className="not-content" style={{ width: '80%', height: '100vh' }}>
         <ReactFlow
-            nodes={nodes}
+            nodes={n}
             onNodesChange={onNodesChange}
-            edges={edges}
+            edges={e}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             fitView
@@ -34,8 +34,8 @@ function Flow({ initialNodes, initialEdges }) {
   );
 }
 
-function App({ initialNodes, initialEdges }) {
-    return (<StrictMode><Flow {...{initialNodes, initialEdges}} /></StrictMode>)
+function App({ nodes, edges }) {
+    return (<StrictMode><Flow {...{nodes, edges}} /></StrictMode>)
 }
 
 
