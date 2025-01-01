@@ -18,8 +18,12 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import Flow from '../components/Flow.astro'
+import mock from '../components/Flow.mock.excalidraw.json'
 
-<Flow />
+<Flow initialNodes={[
+    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
+    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
+]} initialEdges={[{ id: 'e1-2', source: '1', target: '2' }]} />
 
 ## Next steps
 

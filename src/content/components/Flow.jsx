@@ -1,4 +1,4 @@
-import { useCallback, StrictMode } from 'react';
+import { useCallback, StrictMode, useEffect } from 'react';
 
 import {
   Background,
@@ -10,15 +10,7 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-
-const initialNodes = [
-    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-    { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-];
-
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
-
-function Flow() {
+function Flow({ initialNodes, initialEdges }) {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect = useCallback(
@@ -42,8 +34,8 @@ function Flow() {
   );
 }
 
-function App() {
-    return (<StrictMode><Flow /></StrictMode>)
+function App({ initialNodes, initialEdges }) {
+    return (<StrictMode><Flow {...{initialNodes, initialEdges}} /></StrictMode>)
 }
 
 

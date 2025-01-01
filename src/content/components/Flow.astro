@@ -1,5 +1,7 @@
 ---
 import FlowReact from './Flow.jsx'
+
+const { initialNodes, initialEdges } = Astro.props;
 ---
 
-<FlowReact client:load />
+<FlowReact initialNodes={initialNodes} initialEdges={initialEdges} client:load />
