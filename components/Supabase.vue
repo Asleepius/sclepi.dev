@@ -1,5 +1,5 @@
 <script setup>
-import {supabase} from '../supabase/client.js'
+import {supabase} from '../supabase'
 
 const data = await supabase(
   import.meta.env.VITE_SUPABASE_API_URL,
