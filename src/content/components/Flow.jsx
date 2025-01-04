@@ -19,17 +19,15 @@ function Flow({ nodes, edges }) {
   );
 
   return (
-    <div className="not-content" style={{ width: '80%', height: '100vh' }}>
+    <div className="not-content" style={{ width: '100%', height: '100vh' }}>
         <ReactFlow
             nodes={n}
-            onNodesChange={onNodesChange}
             edges={e}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
             fitView
-        >
-            <Background />
-        </ReactFlow>
+            proOptions={
+              {hideAttribution: true}
+            }
+        />
     </div>
   );
 }

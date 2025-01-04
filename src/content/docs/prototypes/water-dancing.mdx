@@ -1,0 +1,41 @@
+---
+title: Water Dancing
+description: Mapping Excalidraw to ReactFlow
+---
+
+### Mapping Excalidraw to ReactFlow
+
+---
+
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import Flow from '../../components/Flow.astro'
+import mock from '../../graphs/float.excalidraw.json'
+
+<Flow {...Object.fromEntries(Object.entries(mock.elements.reduce(
+	(registry, {type, id, ...next}) => {
+		var nodeTypes = ["rectangle", "ellipse", "diamond"]
+		var isNode = nodeTypes.includes(type)
+
+		if (type == "text") {
+			registry.nodes[next.containerId].data.label = next.text;
+			return registry;
+		}
+
+		var value = isNode ? {
+			id, data: { label: "" }, position: { x: Math.round(next.x), y: Math.round(next.y) }
+		} : {
+			id, source: next.startBinding.elementId, target: next.endBinding.elementId
+		}
+		return {
+			...registry,
+			[isNode ? "nodes" : "edges"]: {
+				...registry[isNode ? "nodes" : "edges"],
+				[id]: value
+			}
+		}
+	}, {
+		nodes: {},
+		edges: {}
+	}
+)).map(([key, value]) => [key, Object.values(value)]))} />
